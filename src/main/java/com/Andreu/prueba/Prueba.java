@@ -14,20 +14,36 @@ import org.apache.commons.cli.*;
  */
 public class Prueba {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         
+       args = new String[]{"-c"};
         //Creamos el objetos options
         Options options = new Options();
         //Creamos la fecha actual
-        options.addOption("t", false, "Fecha actual");
+        options.addOption("t","time", false, 
+                "Fecha actual");
         //Creamos el hola mundo
-        options.addOption("w", false,"Hola Mundo");
+        options.addOption("w","hello world", false,
+                "Hola Mundo");
         //creamos el mundo es bonito
-        options.addOption("n", false,"El mundo es bonito");
+        options.addOption("n","bonito", false,
+                "Hola mundo bonito");
         //creamos el mundo es cruel
-        options.addOption("c", false,"El mundo es cruel");
+        options.addOption("c","cruel", false,
+                "Hola mundo cruel");
         //creamos la opcion de ayuda
-        options.addOption("h", false, "mensaje de ayuda");
+        options.addOption("h","help", false,
+                "mensaje de ayuda");
+        
+        OptionGroup group = new OptionGroup();
+        group.addOption(new Option("n", "nice", false,
+                "imprime hola mundo bonito"));
+        
+        group.addOption(new Option("c", "cruel", false,
+                "imprime hola mundo cruel"));
+        
+        options.addOptionGroup(group);
+        
       
         CommandLineParser parser = new DefaultParser();
         
@@ -37,21 +53,16 @@ public class Prueba {
       if(cmd.hasOption("w")) {
           System.out.println("Hola mundo");
     
-}
-else {
-          System.out.println("");
-   
-}
-      if(cmd.hasOption("n")) {
+}     if(cmd.hasOption("n")) {
           System.out.println("El mundo es bonito");
     
-}
-
-      if(cmd.hasOption("c")) {
+}     if(cmd.hasOption("c")) {
           System.out.println("El mundo es cruel");
     
 }
-
+            System.out.println("");
+            
+            
         }catch(ParseException ex){
             
         }
